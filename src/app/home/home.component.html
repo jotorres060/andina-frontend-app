@@ -1,0 +1,23 @@
+<div class="text-center" *ngIf="loading">
+  <app-loading></app-loading>
+</div>
+
+<div *ngIf="!loading">
+  <div *ngIf="data.length > 0; else noData">
+    <h5>Total items: <small>{{ data.length }}</small></h5>
+
+    <div class="card-columns">
+      <app-card *ngFor="let info of data"
+        [permitType]="info.permit_type"
+        [workDescription]="info.work_description"
+        [location]="info.location">
+      </app-card>
+    </div>
+  </div>
+
+  <ng-template #noData>
+    <div class="alert alert-primary text-center" role="alert">
+      No data found.
+    </div>
+  </ng-template>
+</div>
