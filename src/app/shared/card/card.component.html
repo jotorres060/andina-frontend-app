@@ -3,5 +3,8 @@
     <h5 class="card-title ">{{ permitType | titlecase}}</h5>
     <hr>
     <p class="card-text">{{ workDescription | lowercase}}</p>
+    <button class="btn btn-secondary btn-block btn-sm" (click)="viewLocation(coordinates)">
+      Location
+    </button>
   </div>
 </div>

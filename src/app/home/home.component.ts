@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { DataService } from '../services/data.service';
-import { environment } from '../../environments/environment.prod';
-
-import * as Mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-home',
@@ -14,11 +11,8 @@ export class HomeComponent implements OnInit {
 
   public data: any[] = [];
   public loading: boolean = true;
-  public map?: Mapboxgl.Map;
-  public style: string = 'mapbox://styles/mapbox/streets-v11';
-  public lat: number = 40;
-  public lng: number = -74.5;
-  public zoom: number = 9;
+  public lat: number = 3.42158;
+  public lng: number = -76.5205;
 
   constructor(private dataService: DataService) { }
 
@@ -27,15 +21,12 @@ export class HomeComponent implements OnInit {
     this.dataService.getData().subscribe((data: any) => {
       this.data = data['data'];
       this.loading = false;
-
-      // (Mapboxgl as any).accessToken = environment.mapBoxApiKey;
-      // this.map = new Mapboxgl.Map({
-      //   container: 'map-mapbox',
-      //   style: this.style,
-      //   center: [this.lng, this.lat],
-      //   zoom: this.zoom
-      // });
     });
+  }
+
+  public setLatLng(coordinates: number[]): void {
+    this.lat = coordinates[1];
+    this.lng = coordinates[0];
   }
 
 }

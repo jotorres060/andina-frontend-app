@@ -4,14 +4,17 @@
 
 <div *ngIf="!loading">
   <div *ngIf="data.length > 0; else noData">
+    <app-map [lat]="lat" [lng]="lng"></app-map>
+
     <h5>Total items: <small>{{ data.length }}</small></h5>
-
-    <div class="border border-secondary my-3" id="map-mapbox"></div>
-
+    <p class="text-muted text-center">Select an item to view the location on the map</p>
+    
     <div class="card-columns">
       <app-card *ngFor="let info of data"
         [permitType]="info.permit_type"
-        [workDescription]="info.work_description">
+        [workDescription]="info.work_description"
+        [coordinates]="info.location.coordinates"
+        (onClick)="setLatLng($event)">
       </app-card>
     </div>
   </div>
