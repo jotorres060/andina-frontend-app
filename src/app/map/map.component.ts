@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { environment } from '../../environments/environment.prod';
 import * as Mapboxgl from 'mapbox-gl';
@@ -8,7 +8,7 @@ import * as Mapboxgl from 'mapbox-gl';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
 
   public map: Mapboxgl.Map;
   public style: string = 'mapbox://styles/mapbox/streets-v11';
@@ -23,6 +23,14 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this.createMap();
+    this.setMarker();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.map.flyTo({
+      center: [this.lng, this.lat],
+      speed: 3.5
+    });
     this.setMarker();
   }
 
