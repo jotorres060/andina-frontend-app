@@ -6,11 +6,12 @@
   <div *ngIf="data.length > 0; else noData">
     <h5>Total items: <small>{{ data.length }}</small></h5>
 
+    <div class="border border-secondary my-3" id="map-mapbox"></div>
+
     <div class="card-columns">
       <app-card *ngFor="let info of data"
         [permitType]="info.permit_type"
-        [workDescription]="info.work_description"
-        [location]="info.location">
+        [workDescription]="info.work_description">
       </app-card>
     </div>
   </div>

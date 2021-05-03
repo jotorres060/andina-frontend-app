@@ -9,7 +9,6 @@ export class CardComponent implements OnInit {
 
   @Input() public permitType: string = '';
   @Input() public workDescription: string = '';
-  @Input() public location: any;
 
   constructor() { }
 
